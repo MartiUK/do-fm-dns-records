@@ -55,7 +55,7 @@ resource "digitalocean_record" "mail_mx" {
 resource "digitalocean_record" "dkim_cname" {
   for_each = var.enable_dkim_records ? var.dkim_records : []
   domain   = var.domain
-  name     = "${each.key}._domainkey.${var.domain}"
+  name     = "${each.key}._domainkey"
   type     = "CNAME"
   value    = "${each.key}.${var.domain}.dkim.fmhosted.com."
 }
@@ -71,7 +71,7 @@ resource "digitalocean_record" "spf_txt" {
 resource "digitalocean_record" "autodiscover_srv" {
   for_each = var.enable_email_autodiscovery ? var.autodiscovery_records : {}
   domain   = var.domain
-  name     = "${each.key}._tcp.${var.domain}"
+  name     = "${each.key}._tcp"
   type     = "SRV"
   value    = each.value["value"]
   priority = each.value["priority"]
@@ -82,7 +82,7 @@ resource "digitalocean_record" "autodiscover_srv" {
 resource "digitalocean_record" "carddav_srv" {
   for_each = var.enable_carddav_autodiscovery ? var.carddav_records : {}
   domain   = var.domain
-  name     = "${each.key}._tcp.${var.domain}"
+  name     = "${each.key}._tcp"
   type     = "SRV"
   value    = each.value["value"]
   priority = each.value["priority"]
@@ -93,7 +93,7 @@ resource "digitalocean_record" "carddav_srv" {
 resource "digitalocean_record" "caldav_srv" {
   for_each = var.enable_caldav_autodiscovery ? var.caldav_records : {}
   domain   = var.domain
-  name     = "${each.key}._tcp.${var.domain}"
+  name     = "${each.key}._tcp"
   type     = "SRV"
   value    = each.value["value"]
   priority = each.value["priority"]
