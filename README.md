@@ -41,7 +41,7 @@ Unless specified all variables are optional.
 ## Example
 ```terraform
 module "fastmail-dns-records" {
-  source = "martiuk/terraform-digitalocean-fastmail"
+  source = "martiuk/fastmail/digitalocean"
   
   domain = digitalocean_domain.example.name
 }
