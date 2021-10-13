@@ -57,7 +57,7 @@ resource "digitalocean_record" "dkim_cname" {
   domain   = var.domain
   name     = "${each.key}._domainkey.${var.domain}"
   type     = "CNAME"
-  value    = "${each.key}.${var.domain}.dkim.fmhosted.com"
+  value    = "${each.key}.${var.domain}.dkim.fmhosted.com."
 }
 
 resource "digitalocean_record" "spf_txt" {
